@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { Student } from './students.entity';
 
@@ -11,4 +11,13 @@ export class StudentsController {
         return this.studentsService.createStudent(data);
     }
 
+    @Get()
+    async getStudents(): Promise<Student[]> {
+        return this.studentsService.getStudents();
+    }
+    
+    @Get()
+    async getStudentById(@Param('id') id: number): Promise<Student> {
+        return this.studentsService.getStudentById(id);
+    }
 }
